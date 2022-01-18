@@ -7,7 +7,7 @@
   "engines": {
     "node": ">=14.17.0"
   },
-  "main": "index.js",
+  "main": "build/index.js",
   "files": [
     "build/**/*"
   ],
@@ -28,7 +28,9 @@
     "preversion": "npm test && npm run lint",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
-    "create-version": "npm version patch",
+    "create-patch-version": "npm version patch",
+    "create-minor-version": "npm version minor",
+    "create-major-version": "npm version major",
     "publish-latest-version": "npm publish"
   },
   "repository": "Waveful/custom-uuid",
