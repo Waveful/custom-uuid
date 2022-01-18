@@ -2,55 +2,16 @@ import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuidGenerator";
 
 // Constants
-const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 10000;
+const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 50000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 
 describe('uuidGenerator', () => {
 
-  it('generateTimestampUuid', () => {
-    // Check validity.
-    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
-      const uuid = uuidGenerator.generateTimestampUuid();
-      expect(uuid).to.be.a("string");
-      expect(uuid.length).to.be.greaterThanOrEqual(18);
-      expect(uuid.length).to.be.lessThanOrEqual(32);
-      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
-    }
-
-    // Print some.
-    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
-      const uuid = uuidGenerator.generateTimestampUuid();
-      console.log("Timestamp UUID:               " + uuid);
-    }
-  });
-
-  it('generateUuidWithoutBadWords', () => {
+  it('generateShortLowercaseUuid', () => {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
-      const uuid = uuidGenerator.generateUuidWithoutBadWords();
-      expect(uuid).to.be.a("string");
-      assert.equal(uuid.length, 16);
-      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
-      listOfUuids.push(uuid);
-    }
-
-    // Check no duplicates.
-    assert.equal(listOfUuids.length, DEFAULT_NUMBER_OF_TEST_SAMPLES);
-    assert.equal(listOfUuids.length, new Set(listOfUuids).size);
-
-    // Print some.
-    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
-      const uuid = uuidGenerator.generateUuidWithoutBadWords();
-      console.log("UUID without bad words:       " + uuid);
-    }
-  });
-
-  it('generateRandomShortUuid', () => {
-    // Check validity.
-    const listOfUuids = [];
-    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
-      const uuid = uuidGenerator.generateRandomShortUuid();
+      const uuid = uuidGenerator.generateShortLowercaseUuid();
       expect(uuid).to.be.a("string");
       assert.equal(uuid.length, 20);
       expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
@@ -63,16 +24,16 @@ describe('uuidGenerator', () => {
 
     // Print some.
     for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
-      const uuid = uuidGenerator.generateRandomShortUuid();
-      console.log("Random short UUID:            " + uuid);
+      const uuid = uuidGenerator.generateShortLowercaseUuid();
+      console.log("Short lowercase UUID:         " + uuid);
     }
   });
 
-  it('generateRandomLongUuid without hyphens', () => {
+  it('generateLongLowercaseUuid without hyphens', () => {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
-      const uuid = uuidGenerator.generateRandomLongUuid(true);
+      const uuid = uuidGenerator.generateLongLowercaseUuid(true);
       expect(uuid).to.be.a("string");
       assert.equal(uuid.length, 32);
       expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
@@ -85,16 +46,16 @@ describe('uuidGenerator', () => {
 
     // Print some.
     for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
-      const uuid = uuidGenerator.generateRandomLongUuid(true);
-      console.log("Random long UUID (no '-'):    " + uuid);
+      const uuid = uuidGenerator.generateLongLowercaseUuid(true);
+      console.log("Long lowercase UUID (w/o -):  " + uuid);
     }
   });
 
-  it('generateRandomLongUuid with hyphens', () => {
+  it('generateLongLowercaseUuid with hyphens', () => {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
-      const uuid = uuidGenerator.generateRandomLongUuid(false);
+      const uuid = uuidGenerator.generateLongLowercaseUuid(false);
       expect(uuid).to.be.a("string");
       assert.equal(uuid.length, 36);
       expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
@@ -107,8 +68,71 @@ describe('uuidGenerator', () => {
 
     // Print some.
     for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
-      const uuid = uuidGenerator.generateRandomLongUuid(false);
-      console.log("Random long UUID:             " + uuid);
+      const uuid = uuidGenerator.generateLongLowercaseUuid(false);
+      console.log("Long lowercase UUID (w/ -):   " + uuid);
+    }
+  });
+
+  it('generateUuidWithoutBadWords', () => {
+    // Check validity.
+    const listOfUuids = [];
+    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
+      const uuid = uuidGenerator.generateProfanitySafeUuid();
+      expect(uuid).to.be.a("string");
+      assert.equal(uuid.length, 18);
+      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
+      listOfUuids.push(uuid);
+    }
+
+    // Check no duplicates.
+    assert.equal(listOfUuids.length, DEFAULT_NUMBER_OF_TEST_SAMPLES);
+    assert.equal(listOfUuids.length, new Set(listOfUuids).size);
+
+    // Print some.
+    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
+      const uuid = uuidGenerator.generateProfanitySafeUuid();
+      console.log("Profanity safe UUID:          " + uuid);
+    }
+  });
+
+  it('generateCustomUuid', () => {
+    // Check validity.
+    const listOfUuids = [];
+    const uuidDictionary = "AAAAABCDEF";
+    const uuidLength = 64;
+    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
+      const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
+      expect(uuid).to.be.a("string");
+      assert.equal(uuid.length, uuidLength);
+      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
+      listOfUuids.push(uuid);
+    }
+
+    // Check no duplicates.
+    assert.equal(listOfUuids.length, DEFAULT_NUMBER_OF_TEST_SAMPLES);
+    assert.equal(listOfUuids.length, new Set(listOfUuids).size);
+
+    // Print some.
+    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
+      const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
+      console.log("Custom UUID:                  " + uuid);
+    }
+  });
+
+  it('generateTimestampId', () => {
+    // Check validity.
+    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
+      const uuid = uuidGenerator.generateTimestampId();
+      expect(uuid).to.be.a("string");
+      expect(uuid.length).to.be.greaterThanOrEqual(18);
+      expect(uuid.length).to.be.lessThanOrEqual(32);
+      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
+    }
+
+    // Print some.
+    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
+      const uuid = uuidGenerator.generateTimestampId();
+      console.log("Timestamp UUID:               " + uuid);
     }
   });
 });
