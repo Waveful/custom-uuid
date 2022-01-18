@@ -22,6 +22,9 @@
     "compile": "tsc -p .",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
+    "prepare" : "npm run compile",
+    "prepublishOnly" : "npm test && npm run lint",
+    "preversion" : "npm test && npm run lint",
     "test": "mocha --recursive --require ts-node/register 'test/**/*.ts'"
   },
   "repository": "Waveful/uuid-generator",
