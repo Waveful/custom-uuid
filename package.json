@@ -1,7 +1,7 @@
 {
   "name": "custom-uuid",
   "description": "Generate UUIDs with custom formats.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "Apache-2.0",
   "author": "Waveful",
   "engines": {
@@ -23,13 +23,11 @@
     "lint": "tslint -p tsconfig.json",
     "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "test": "mocha --recursive --require ts-node/register 'test/**/*.ts'",
-
-    "prepare" : "npm run compile",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm test && npm run lint",
-    "version" : "git add -A src",
-    "postversion" : "git push && git push --tags",
-
+    "prepare": "npm run compile",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm test && npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags",
     "create-version": "npm version patch",
     "publish-latest-version": "npm publish"
   },
