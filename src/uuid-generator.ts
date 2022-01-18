@@ -1,5 +1,5 @@
 import * as anyBaseConverter from "./any-base-converter";
-import {randomBytes, randomUUID} from "crypto";
+import { randomBytes, randomUUID } from "crypto";
 
 /**
  * Generates a short cryptographically-strong random UUID using numbers and lowercase letters.
@@ -12,7 +12,7 @@ import {randomBytes, randomUUID} from "crypto";
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*36^20) = 4.58e+15 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
 export function generateShortLowercaseUuid() {
-  return generateCustomUuid('0123456789abcdefghijklmnopqrstuvwxyz', 20);
+  return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyz", 20);
 }
 
 /**
@@ -29,7 +29,7 @@ export function generateShortLowercaseUuid() {
  */
 export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean) {
   if (shouldRemoveHyphens) {
-    return randomUUID().replace(/-/g, '');
+    return randomUUID().replace(/-/g, "");
   } else {
     return randomUUID();
   }
@@ -48,8 +48,8 @@ export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean) {
  */
 export function generateProfanitySafeUuid() {
   const partLength = 9;
-  const numbersPart = generateCustomUuid('123456789', partLength); // Not using number '0' since it can be seen as the letter 'O'.
-  const lettersPart = generateCustomUuid('abcdefghijklmnopqrstuvwxyz', partLength);
+  const numbersPart = generateCustomUuid("123456789", partLength); // Not using number '0' since it can be seen as the letter 'O'.
+  const lettersPart = generateCustomUuid("abcdefghijklmnopqrstuvwxyz", partLength);
   let resultingString = "";
   for (let i = 0; i < partLength; i++) {
     resultingString += numbersPart[i];
@@ -74,7 +74,7 @@ export function generateCustomUuid(dictionary: string, length: number) {
   const bytesNeededForGeneration = Math.ceil(bitsNeededForGeneration / 8);
 
   // Create a random HEX string, created from the needed bytes.
-  const randomHex = randomBytes(bytesNeededForGeneration).toString('hex');
+  const randomHex = randomBytes(bytesNeededForGeneration).toString("hex");
 
   // Convert HEX string to the dictionary provided.
   const translated = anyBaseConverter.convert(anyBaseConverter.HEX, dictionary, randomHex);

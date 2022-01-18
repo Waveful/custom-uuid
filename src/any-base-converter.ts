@@ -1,9 +1,9 @@
 // Inspired by https://github.com/HarasimowiczKamil/any-base
 
-export const BIN: string = '01';
-export const OCT: string = '01234567';
-export const DEC: string = '0123456789';
-export const HEX: string = '0123456789abcdef';
+export const BIN: string = "01";
+export const OCT: string = "01234567";
+export const DEC: string = "0123456789";
+export const HEX: string = "0123456789abcdef";
 
 /**
  * Converts input from source alphabet to destination alphabet.
@@ -13,7 +13,7 @@ export const HEX: string = '0123456789abcdef';
  */
 export function convert(srcAlphabet: string, dstAlphabet: string, input: string) {
   if (!srcAlphabet || !dstAlphabet || !srcAlphabet.length || !dstAlphabet.length) {
-    throw new Error('Bad alphabet');
+    throw new Error("Bad alphabet");
   }
 
   let divide;
@@ -22,10 +22,10 @@ export function convert(srcAlphabet: string, dstAlphabet: string, input: string)
   const fromBase: number = srcAlphabet.length;
   const toBase: number = dstAlphabet.length;
   let length: number = input.length;
-  let result: string = '';
+  let result: string = "";
 
   if (!isValid(srcAlphabet, input)) {
-    throw new Error('Input "' + input + '" contains non-alphabetic digits (' + srcAlphabet + ')');
+    throw new Error('Input "' + input + '" contains non-alphabetic digits (' + srcAlphabet + ")");
   }
 
   if (srcAlphabet === dstAlphabet) {
