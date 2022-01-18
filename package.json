@@ -20,14 +20,20 @@
   ],
   "scripts": {
     "compile": "tsc -p .",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
+    "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "test": "mocha --recursive --require ts-node/register 'test/**/*.ts'",
+
     "prepare" : "npm run compile",
     "prepublishOnly" : "npm test && npm run lint",
     "preversion" : "npm test && npm run lint",
-    "test": "mocha --recursive --require ts-node/register 'test/**/*.ts'"
+    "version" : "git add -A src",
+    "postversion" : "git push && git push --tags",
+
+    "create-version": "npm version patch",
+    "publish-latest-version": "npm publish"
   },
-  "repository": "Waveful/uuid-generator",
+  "repository": "Waveful/custom-uuid",
   "devDependencies": {
     "@types/chai": "^4.3.0",
     "@types/chai-as-promised": "^7.1.4",
