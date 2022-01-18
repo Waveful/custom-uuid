@@ -107,11 +107,6 @@ export function generateTimestampId() {
   const hour = now.getHours();
   const min = now.getMinutes();
   const sec = now.getSeconds();
-  if (process != null) {
-    const nanoseconds = process.hrtime()[1]; // Nanoseconds.
-    return year + "-" + month + "-" + day + "-T-" + hour + "-" + min + "-" + sec + "-" + nanoseconds;
-  } else {
-    const ms = now.getMilliseconds();
-    return year + "-" + month + "-" + day + "-T-" + hour + "-" + min + "-" + sec + "-" + ms;
-  }
+  const subSec = process != null ? process.hrtime()[1] : now.getMilliseconds(); // Nanoseconds precision if "process" available, otherwise milliseconds precision.
+  return year + "-" + month + "-" + day + "-T-" + hour + "-" + min + "-" + sec + "-" + subSec;
 }
