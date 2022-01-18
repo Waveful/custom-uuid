@@ -1,4 +1,4 @@
-import * as anyBaseConverter from "./anyBaseConverter";
+import * as anyBaseConverter from "./any-base-converter";
 import {randomBytes, randomUUID} from "crypto";
 
 /**

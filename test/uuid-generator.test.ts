@@ -1,5 +1,5 @@
 import {expect, assert} from "chai";
-import * as uuidGenerator from "../src/uuidGenerator";
+import * as uuidGenerator from "../src/uuid-generator";
 
 // Constants
 const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 50000;

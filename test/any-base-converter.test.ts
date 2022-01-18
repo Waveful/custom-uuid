@@ -1,5 +1,5 @@
 import {expect, assert} from "chai";
-import * as anyBaseConverter from "../src/anyBaseConverter";
+import * as anyBaseConverter from "../src/any-base-converter";
 
 describe('anyBaseConverter', function() {
 
