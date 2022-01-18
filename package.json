@@ -1,5 +1,5 @@
 {
-  "name": "uuid-generator",
+  "name": "custom-uuid",
   "description": "Generate UUIDs with custom formats.",
   "version": "1.0.0",
   "license": "Apache-2.0",
@@ -12,6 +12,7 @@
     "build/**/*"
   ],
   "keywords": [
+    "custom uuid",
     "uuid",
     "uuid generator",
     "universally unique identifier",
