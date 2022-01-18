@@ -60,11 +60,7 @@ node_modules/
 *.iml
 *.ipr
 *.iws
-.idea/modules.xml
-.idea/usage.statistics.xml
-.idea/workspace.xml
-./idea/shelf/
-.idea/libraries/
+.idea
 
 # Other IDEs
 .vscode/settings.json
