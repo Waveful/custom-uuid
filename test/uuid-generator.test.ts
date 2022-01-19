@@ -2,7 +2,7 @@ import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuid-generator";
 
 // Constants
-const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 50000;
+const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 100000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 
 describe('uuidGenerator', () => {
@@ -27,7 +27,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateShortLowercaseUuid();
       console.log("Short lowercase UUID:         " + uuid);
     }
-  });
+  }).timeout(30*1000);
 
   it('generateLongLowercaseUuid without hyphens', () => {
     // Check validity.
@@ -49,7 +49,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateLongLowercaseUuid(true);
       console.log("Long lowercase UUID (w/o -):  " + uuid);
     }
-  });
+  }).timeout(30*1000);
 
   it('generateLongLowercaseUuid with hyphens', () => {
     // Check validity.
@@ -71,7 +71,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateLongLowercaseUuid(false);
       console.log("Long lowercase UUID (w/ -):   " + uuid);
     }
-  });
+  }).timeout(30*1000);
 
   it('generateUuidWithoutBadWords', () => {
     // Check validity.
@@ -93,7 +93,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateProfanitySafeUuid();
       console.log("Profanity safe UUID:          " + uuid);
     }
-  });
+  }).timeout(30*1000);
 
   it('generateCustomUuid', () => {
     // Check validity.
@@ -117,7 +117,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
       console.log("Custom UUID:                  " + uuid);
     }
-  });
+  }).timeout(60*1000);
 
   it('generateTimestampId', () => {
     // Check validity.
@@ -134,7 +134,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateTimestampId();
       console.log("Timestamp UUID:               " + uuid);
     }
-  });
+  }).timeout(30*1000);
 });
 
 function doesStringContainOnlySimpleCharacters(input: string) {
