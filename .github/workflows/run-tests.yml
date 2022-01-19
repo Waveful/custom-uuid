@@ -1,0 +1,49 @@
+name: Tests
+
+on:
+  push:
+
+    branches:
+      - main
+
+  pull_request:
+
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 14.x, 16.x ]
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.JS ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+
+      - name: Update npm
+        run: npm install -g npm && node -v && npm -v
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests with coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: 8c570151987d2d735f6aa1ea8d79629d30dfbcd18251218528454e93aebb0b2d
+        with:
+          coverageCommand: npm run coverage  # Seems that when a test fails also the coverage fails, so we can do two steps with one.

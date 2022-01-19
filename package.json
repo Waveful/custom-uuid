@@ -19,12 +19,12 @@
     "short uuid"
   ],
   "scripts": {
-    "compile": "tsc -p .",
+    "build": "tsc -p .",
     "lint": "tslint -p tsconfig.json",
     "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "test": "mocha --recursive --require ts-node/register 'test/**/*.ts'",
     "coverage": "nyc --reporter=lcov --reporter=text npm run test",
-    "prepare": "npm run compile",
+    "prepare": "npm run build",
     "preversion": "npm test && npm run lint",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
