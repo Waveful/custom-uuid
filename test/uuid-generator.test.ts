@@ -2,10 +2,54 @@ import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuid-generator";
 
 // Constants
-const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 200000;
+const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 20000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 
 describe('uuidGenerator', () => {
+
+  it('generateShortUuid', () => {
+    // Check validity.
+    const listOfUuids = [];
+    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
+      const uuid = uuidGenerator.generateShortUuid();
+      expect(uuid).to.be.a("string");
+      assert.equal(uuid.length, 16);
+      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
+      listOfUuids.push(uuid);
+    }
+
+    // Check no duplicates.
+    assert.equal(listOfUuids.length, DEFAULT_NUMBER_OF_TEST_SAMPLES);
+    assert.equal(listOfUuids.length, new Set(listOfUuids).size);
+
+    // Print some.
+    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
+      const uuid = uuidGenerator.generateShortUuid();
+      console.log("Short UUID:                   " + uuid);
+    }
+  }).timeout(2*60*1000);
+
+  it('generateStrongCompactUuid', () => {
+    // Check validity.
+    const listOfUuids = [];
+    for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
+      const uuid = uuidGenerator.generateStrongCompactUuid();
+      expect(uuid).to.be.a("string");
+      assert.equal(uuid.length, 22);
+      expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
+      listOfUuids.push(uuid);
+    }
+
+    // Check no duplicates.
+    assert.equal(listOfUuids.length, DEFAULT_NUMBER_OF_TEST_SAMPLES);
+    assert.equal(listOfUuids.length, new Set(listOfUuids).size);
+
+    // Print some.
+    for (let i = 0; i < NUMBER_OF_UUIDS_TO_BE_PRINTED; i++) {
+      const uuid = uuidGenerator.generateStrongCompactUuid();
+      console.log("Short and compact UUID:       " + uuid);
+    }
+  }).timeout(2*60*1000);
 
   it('generateShortLowercaseUuid', () => {
     // Check validity.

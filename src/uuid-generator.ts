@@ -2,8 +2,36 @@ import * as anyBaseConverter from "./any-base-converter";
 import { randomBytes, randomUUID } from "crypto";
 
 /**
+ * Generates a short cryptographically-strong random UUID using numbers and letters.
+ * Example: "14usBY8xSYXGPvsA".
+ * Use this identifier when you need a strong but very short universally unique id.
+ *
+ * Length of this UUID: 16 characters.
+ * Total number of possible UUIDs: 62^16 = 4.77e+28, precisely 47'672'401'706'823'533'450'263'330'816
+ * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(62^16)) = 0.00000000105% (https://preshing.com/20110504/hash-collision-probabilities/)
+ * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*62^16) = 2.73e+14 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+ */
+export function generateShortUuid() {
+  return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 16);
+}
+
+/**
+ * Generates a short cryptographically-strong random UUID using numbers and letters.
+ * Example: "6ptGBhTKkxTMCMEiiHiwwj".
+ * Use this identifier when you need a very strong but still compact universally unique id.
+ *
+ * Length of this UUID: 22 characters.
+ * Total number of possible UUIDs: 62^22 = 2.70e+39, precisely 2'707'803'647'802'660'400'290'261'537'185'326'956'544
+ * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(62^22)) = 0.0000000000000000000185% (https://preshing.com/20110504/hash-collision-probabilities/)
+ * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*62^22) = 6.52e+19 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+ */
+export function generateStrongCompactUuid() {
+  return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 22);
+}
+
+/**
  * Generates a short cryptographically-strong random UUID using numbers and lowercase letters.
- * Example: "15q5rref1h5deoiuzycs".
+ * Example: "15amp61jbnu6dzmhxa0i".
  * Use this identifier when you need a strong but short universally unique id that does not contain uppercase letters.
  *
  * Length of this UUID: 20 characters.
@@ -16,15 +44,15 @@ export function generateShortLowercaseUuid() {
 }
 
 /**
- * Generates a long cryptographically-strong random UUID similar to the RFC 4122 version 4 UUID (128 random bits converted to hex).
+ * Generates a long cryptographically-strong random UUID using the RFC 4122 version 4 UUID (122 random bits converted to hex).
  * Example (w/ hyphens): "3e3b35a9-448b-4142-9a92-cb58e5bbafc6".
  * Example (w/o hyphens): "6ed694df65db4464979639d9e6d57e9a".
  * Use this identifier when you need a very strong universally unique id, but having a long string is not a problem.
  *
  * Length of this UUID: 32 characters (or 36 if using hyphens "-").
- * Total number of possible UUIDs: 2^128 = 3.40e+38, precisely 340'282'366'920'938'463'463'374'607'431'768'211'456
- * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(2^128)) = 0.000000000000000000147% (https://preshing.com/20110504/hash-collision-probabilities/)
- * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*2^128) = 2.31e+19 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+ * Total number of possible UUIDs: 2^122 = 5.31e+36, precisely 5'316'911'983'139'663'491'615'228'241'121'378'304
+ * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(2^122)) = 0.00000000000000000940% (https://preshing.com/20110504/hash-collision-probabilities/)
+ * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*2^122) = 2.88e+18 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  * @param shouldRemoveHyphens set to true to remove hyphens from the v4 UUID (instead of 8a480344-a266-4aa5-b0ba-84641a61911d, 8a480344a2664aa5b0ba84641a61911d)
  */
 export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean) {

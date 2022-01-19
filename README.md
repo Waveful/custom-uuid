@@ -15,13 +15,13 @@ You can simply create a new UUID by specifying the dictionary of characters and 
 
 To create a custom UUID...
 
-##### 1. Install
+#### 1. Install
 
 ```shell
 npm install custom-uuid
 ```
 
-##### 2. Create a custom UUID
+#### 2. Create a custom UUID
 
 ES6 module syntax:
 
@@ -37,7 +37,7 @@ const { generateCustomUuid } = require('custom-uuid');
 generateCustomUuid("123456789ABC", 20); // ⇨ 'B5B6699247862A569998'
 ```
 
-##### 3. Make sure the custom UUID is unique enough for your use case
+#### 3. Make sure the custom UUID is unique enough for your use case
 
 In this example we are using a dictionary with 12 different characters and a length of 20.
 Therefore, the total number of unique identifiers is `12^20 = 3.83e+21`.\
@@ -53,6 +53,10 @@ Or you can use one of the pre-defined UUIDs that have strong guarantees of uniqu
 
 | Method                       | Length | Example output                       | Average UUIDs to be generated before having the first collision |
 |------------------------------|--------|--------------------------------------|-----------------------------------------------------------------|
+| generateShortUuid()          | 16     | 14usBY8xSYXGPvsA                     | 2.73e+14                                                        |
+| generateStrongCompactUuid()  | 22     | 6ptGBhTKkxTMCMEiiHiwwj               | 6.52e+19                                                        |
 | generateShortLowercaseUuid() | 20     | 15amp61jbnu6dzmhxa0i                 | 4.58e+15                                                        |
-| generateLongLowercaseUuid()  | 36     | e3703960-ca2d-4802-b426-88467e0e9b98 | 2.31e+19                                                        |
-| generateProfanitySafeUuid()  | 20     | 2b2a2n7j3j2x5d2i5q                   | 8.79e+11                                                        |
+| generateLongLowercaseUuid()  | 36     | e3703960-ca2d-4802-b426-88467e0e9b98 | 2.88e+18                                                        |
+| generateProfanitySafeUuid()  | 20     | 4a8g6z1w7d1a8d1o9o3o                 | 8.79e+11                                                        |
+
+Note: `generateLongLowercaseUuid()` uses `crypto.randomUUID()` therefore it generates an [RFC 4122 version 4 UUID](https://datatracker.ietf.org/doc/html/rfc4122).
