@@ -73,13 +73,13 @@ describe('uuidGenerator', () => {
     }
   }).timeout(2*60*1000);
 
-  it('generateUuidWithoutBadWords', () => {
+  it('generateProfanitySafeUuid', () => {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
       const uuid = uuidGenerator.generateProfanitySafeUuid();
       expect(uuid).to.be.a("string");
-      assert.equal(uuid.length, 18);
+      assert.equal(uuid.length, 20);
       expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
       listOfUuids.push(uuid);
     }

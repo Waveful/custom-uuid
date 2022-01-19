@@ -16,7 +16,7 @@ export function generateShortLowercaseUuid() {
 }
 
 /**
- * Generates a long cryptographically-strong random UUID using RFC 4122 version 4 UUID (128 random bits converted to hex).
+ * Generates a long cryptographically-strong random UUID similar to the RFC 4122 version 4 UUID (128 random bits converted to hex).
  * Example (w/ hyphens): "3e3b35a9-448b-4142-9a92-cb58e5bbafc6".
  * Example (w/o hyphens): "6ed694df65db4464979639d9e6d57e9a".
  * Use this identifier when you need a very strong universally unique id, but having a long string is not a problem.
@@ -36,18 +36,18 @@ export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean) {
 }
 
 /**
- * Generates a short cryptographically-strong random UUID by alternating a number with a lowercase letter,
+ * Generates a short cryptographically-strong random UUID by alternating a number with a letter,
  * this alternation is done to avoid the creation of profanity inside the UUID (if we use letters it could create a bad word by chance).
- * Example: "2e2r9o3w1r2l5w1b"
+ * Example: "4a8g6z1w7d1a8d1o9o3o"
  * Use this identifier when you need a universally unique id that is frequently presented to users or associated to users.
  *
- * Length of this UUID: 18 characters.
- * Total number of possible UUIDs: (9^9)*(26^9) = 2.10e+21, precisely 2'103'500'970'336'180'939'264
- * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(9^8)*(26^8)) ≈ 0.0238% (https://preshing.com/20110504/hash-collision-probabilities/)
- * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*(9^8)*(26^8)) = 57'481'924'094 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+ * Length of this UUID: 20 characters.
+ * Total number of possible UUIDs: (9^10)*(26^10) = 4.92e+23, precisely 492'219'227'058'666'339'787'776
+ * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(9^10)*(26^10)) ≈ 0.000102% (https://preshing.com/20110504/hash-collision-probabilities/)
+ * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*(9^10)*(26^10)) = 879'304'357'911 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
 export function generateProfanitySafeUuid() {
-  const partLength = 9;
+  const partLength = 10;
   const numbersPart = generateCustomUuid("123456789", partLength); // Not using number '0' since it can be seen as the letter 'O'.
   const lettersPart = generateCustomUuid("abcdefghijklmnopqrstuvwxyz", partLength);
   let resultingString = "";
