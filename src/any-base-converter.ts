@@ -18,7 +18,7 @@ export function convert(srcAlphabet: string, dstAlphabet: string, input: string)
 
   let divide;
   let newlen;
-  const inputMap: { [key: string]: number } = { };
+  const inputMap: { [key: string]: number } = {};
   const fromBase: number = srcAlphabet.length;
   const toBase: number = dstAlphabet.length;
   let length: number = input.length;
