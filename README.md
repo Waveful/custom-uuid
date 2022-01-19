@@ -59,4 +59,12 @@ Or you can use one of the pre-defined UUIDs that have strong guarantees of uniqu
 | generateLongLowercaseUuid()  | 36     | e3703960-ca2d-4802-b426-88467e0e9b98 | 2.88e+18                                                        |
 | generateProfanitySafeUuid()  | 20     | 4a8g6z1w7d1a8d1o9o3o                 | 8.79e+11                                                        |
 
-Note: `generateLongLowercaseUuid()` uses `crypto.randomUUID()` therefore it generates an [RFC 4122 version 4 UUID](https://datatracker.ietf.org/doc/html/rfc4122).
+\
+Note: `generateLongLowercaseUuid()` provides [RFC4122 v4-compliant UUIDs](https://datatracker.ietf.org/doc/html/rfc4122) by using `crypto.randomUUID()`, `crypto.randomUUID()` is only available in node >= 14.17.0.
+
+
+## License
+
+Apache Version 2.0
+
+See [LICENSE](./LICENSE)
