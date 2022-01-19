@@ -18,7 +18,7 @@ export function convert(srcAlphabet: string, dstAlphabet: string, input: string)
 
   let divide;
   let newlen;
-  const inputMap = {};
+  const inputMap: { [key: string]: number } = { };
   const fromBase: number = srcAlphabet.length;
   const toBase: number = dstAlphabet.length;
   let length: number = input.length;
@@ -33,21 +33,17 @@ export function convert(srcAlphabet: string, dstAlphabet: string, input: string)
   }
 
   for (let i = 0; i < length; i++) {
-    // @ts-ignore
     inputMap[i] = srcAlphabet.indexOf(input[i]);
   }
   do {
     divide = 0;
     newlen = 0;
     for (let i = 0; i < length; i++) {
-      // @ts-ignore
       divide = divide * fromBase + inputMap[i];
       if (divide >= toBase) {
-        // @ts-ignore
-        inputMap[newlen++] = parseInt(divide / toBase, 10);
+        inputMap[newlen++] = parseInt(String(divide / toBase), 10);
         divide = divide % toBase;
       } else if (newlen > 0) {
-        // @ts-ignore
         inputMap[newlen++] = 0;
       }
     }
