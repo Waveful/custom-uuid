@@ -2,7 +2,7 @@ import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuid-generator";
 
 // Constants
-const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 1000000;
+const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 200000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 
 describe('uuidGenerator', () => {
@@ -99,7 +99,7 @@ describe('uuidGenerator', () => {
     // Check validity.
     const listOfUuids = [];
     const uuidDictionary = "AAAAABCDEF";
-    const uuidLength = 64;
+    const uuidLength = 32;
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
       const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
       expect(uuid).to.be.a("string");
