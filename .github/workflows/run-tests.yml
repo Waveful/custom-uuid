@@ -29,8 +29,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           check-latest: true
 
-      - name: Update npm
-        run: npm install -g npm && node -v && npm -v
+      - name: Print npm and Node.JS versions
+        run: node -v && npm -v
 
       - name: Install dependencies
         run: npm ci
