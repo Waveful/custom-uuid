@@ -19,7 +19,7 @@
     "short uuid"
   ],
   "scripts": {
-    "build": "tsc -p .",
+    "build": "rm -rf build && tsc -p .",
     "lint": "tslint -p tsconfig.json",
     "prettier": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "test": "mocha --recursive --require ts-node/register 'test/**/*.ts'",
