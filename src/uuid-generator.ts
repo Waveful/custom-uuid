@@ -70,7 +70,7 @@ export function generateShortLowercaseUuid(): string {
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*2^122) = 2.88e+18 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  * @param shouldRemoveHyphens set to true to remove hyphens from the v4 UUID (instead of 8a480344-a266-4aa5-b0ba-84641a61911d, 8a480344a2664aa5b0ba84641a61911d)
  */
-export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean): string {
+export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean = false): string {
   if (shouldRemoveHyphens) {
     return randomUUID().replace(/-/g, "");
   } else {
