@@ -18,7 +18,7 @@ import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuid-generator";
 
 // Constants
-const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 200000;
+const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 1000000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 
 describe('uuidGenerator', () => {

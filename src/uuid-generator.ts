@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-import * as anyBaseConverter from "./any-base-converter";
-import { randomBytes, randomUUID } from "crypto";
+import { randomInt, randomUUID } from "crypto";
 
 /**
  * Generates a short cryptographically-strong random UUID using numbers and letters.
@@ -109,30 +108,14 @@ export function generateProfanitySafeUuid(): string {
  * but take into consideration that duplicates increase the probability of generating that character.
  * @param length the length of the UUID.
  */
-export function generateCustomUuid(dictionary: string, length: number) {
-  // Calculate total combinations of UUIDs with the dictionary and the length provided.
-  const totalNumberOfPossibleUuids = dictionary.length ** length;
-
-  // Calculate number of bytes needed to have a total number of combinations equal or a bit greater than the total number of possible UUIDs.
-  const bitsNeededForGeneration = Math.ceil(Math.log2(totalNumberOfPossibleUuids));
-  const bytesNeededForGeneration = Math.ceil(bitsNeededForGeneration / 8);
-
-  // Create a random HEX string, created from the needed bytes.
-  const randomHex = randomBytes(bytesNeededForGeneration).toString("hex");
-
-  // Convert HEX string to the dictionary provided.
-  const translated = anyBaseConverter.convert(anyBaseConverter.HEX, dictionary, randomHex);
-
-  // The length can be bigger due to the different number of possible values,
-  // or smaller due to zero values that are not printed (e.g., an hex of "0000000000" is simply converted to the zero character string).
-  if (translated.length < length) {
-    return translated.padStart(
-      length, // Length to reach.
-      dictionary[0], // Letter for filling the string.
-    );
-  } else {
-    return translated.slice(0, length);
+export function generateCustomUuid(dictionary: string, length: number): string {
+  let result = "";
+  const max = dictionary.length;
+  for (let i = 0; i < length; i++) {
+    // Pick random character from the dictionary and add it to the string we are building.
+    result += dictionary[randomInt(0, max)];
   }
+  return result;
 }
 
 /**
@@ -143,7 +126,7 @@ export function generateCustomUuid(dictionary: string, length: number) {
  * WARNING: this identifier is not universally unique.
  * WARNING: this identifier does not have a fixed length.
  */
-export function generateTimestampId() {
+export function generateTimestampId(): string {
   const now = new Date();
   const year = now.getFullYear();
   const month = now.getMonth() + 1; // JavaScript months are 0-based.
