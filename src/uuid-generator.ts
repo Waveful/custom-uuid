@@ -27,7 +27,7 @@ import { randomBytes, randomUUID } from "crypto";
  * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(62^16)) = 0.00000000105% (https://preshing.com/20110504/hash-collision-probabilities/)
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*62^16) = 2.73e+14 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
-export function generateShortUuid() {
+export function generateShortUuid(): string {
   return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 16);
 }
 
@@ -41,7 +41,7 @@ export function generateShortUuid() {
  * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(62^22)) = 0.0000000000000000000185% (https://preshing.com/20110504/hash-collision-probabilities/)
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*62^22) = 6.52e+19 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
-export function generateStrongCompactUuid() {
+export function generateStrongCompactUuid(): string {
   return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 22);
 }
 
@@ -55,7 +55,7 @@ export function generateStrongCompactUuid() {
  * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(36^20)) = 0.00000000000374% (https://preshing.com/20110504/hash-collision-probabilities/)
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*36^20) = 4.58e+15 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
-export function generateShortLowercaseUuid() {
+export function generateShortLowercaseUuid(): string {
   return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyz", 20);
 }
 
@@ -71,7 +71,7 @@ export function generateShortLowercaseUuid() {
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*2^122) = 2.88e+18 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  * @param shouldRemoveHyphens set to true to remove hyphens from the v4 UUID (instead of 8a480344-a266-4aa5-b0ba-84641a61911d, 8a480344a2664aa5b0ba84641a61911d)
  */
-export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean) {
+export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean): string {
   if (shouldRemoveHyphens) {
     return randomUUID().replace(/-/g, "");
   } else {
@@ -90,7 +90,7 @@ export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean) {
  * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(9^10)*(26^10)) ≈ 0.000102% (https://preshing.com/20110504/hash-collision-probabilities/)
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*(9^10)*(26^10)) = 879'304'357'911 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
-export function generateProfanitySafeUuid() {
+export function generateProfanitySafeUuid(): string {
   const partLength = 10;
   const numbersPart = generateCustomUuid("123456789", partLength); // Not using number '0' since it can be seen as the letter 'O'.
   const lettersPart = generateCustomUuid("abcdefghijklmnopqrstuvwxyz", partLength);

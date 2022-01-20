@@ -197,7 +197,7 @@ describe('uuidGenerator', () => {
   }).timeout(2*60*1000);
 });
 
-function doesStringContainOnlySimpleCharacters(input: string) {
+function doesStringContainOnlySimpleCharacters(input: string): boolean {
   const simpleCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-';
   for (let i = 0; i < input.length; i++) {
     if (!simpleCharacters.includes(input.charAt(i))) {
