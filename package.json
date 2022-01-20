@@ -30,7 +30,7 @@
     "postversion": "git push && git push --tags",
     "create-patch-version": "npm version patch && npm publish",
     "create-minor-version": "npm version minor && npm publish",
-    "create-major-version": "npm version major && npm publish",
+    "create-major-version": "npm version major && npm publish"
   },
   "repository": "Waveful/custom-uuid",
   "devDependencies": {
