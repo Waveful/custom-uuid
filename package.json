@@ -28,10 +28,9 @@
     "preversion": "npm test && npm run lint",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
-    "create-patch-version": "npm version patch",
-    "create-minor-version": "npm version minor",
-    "create-major-version": "npm version major",
-    "publish-latest-version": "npm publish"
+    "create-patch-version": "npm version patch && npm publish",
+    "create-minor-version": "npm version minor && npm publish",
+    "create-major-version": "npm version major && npm publish",
   },
   "repository": "Waveful/custom-uuid",
   "devDependencies": {
