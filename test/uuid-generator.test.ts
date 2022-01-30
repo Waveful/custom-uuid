@@ -26,7 +26,7 @@ describe('uuidGenerator', () => {
   it('Check uniform distribution of uuids', () => {
     const uuidDictionary = "ABC";
     const uuidLength = 3;
-    const numberOfTestSamples = 20*1000*1000;
+    const numberOfTestSamples = 10*1000*1000;
 
     // Initialize map to collect results.
     const mapOfUuidExtractions: { [key: string]: number } = { };
@@ -57,9 +57,10 @@ describe('uuidGenerator', () => {
     // Check for uniform distribution.
     const numberOfPossibleUuids = uuidDictionary.length ** uuidLength;
     const expectedPercentageWithUniformDistribution = 100 / numberOfPossibleUuids;
-    const delta = expectedPercentageWithUniformDistribution * 0.01;
+    const delta = expectedPercentageWithUniformDistribution * 0.025;
+    console.log("Expected value: " + expectedPercentageWithUniformDistribution.toFixed(5) + " ±" + delta.toFixed(5));
     for (const uuid in mapOfUuidPercentages) {
-      assert.approximately(mapOfUuidPercentages[uuid], expectedPercentageWithUniformDistribution, delta, "The extraction seems to not be a uniform distribution (max 1.0% of error admitted).");
+      assert.approximately(mapOfUuidPercentages[uuid], expectedPercentageWithUniformDistribution, delta, "The extraction seems to not be a uniform distribution (max 2.5% of error admitted).");
     }
   }).timeout(2*60*1000);
 
