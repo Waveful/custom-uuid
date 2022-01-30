@@ -23,6 +23,46 @@ const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 
 describe('uuidGenerator', () => {
 
+  it('Check uniform distribution of uuids', () => {
+    const uuidDictionary = "ABC";
+    const uuidLength = 3;
+    const numberOfTestSamples = 20*1000*1000;
+
+    // Initialize map to collect results.
+    const mapOfUuidExtractions: { [key: string]: number } = { };
+    for (let i = 0; i < uuidDictionary.length; i++) {
+      for (let j = 0; j < uuidDictionary.length; j++) {
+        for (let k = 0; k < uuidDictionary.length; k++) {
+          const uuid = uuidDictionary[i] + uuidDictionary[j] + uuidDictionary[k];
+          mapOfUuidExtractions[uuid] = 0;
+        }
+      }
+    }
+
+    // Create and count UUIDs.
+    for (let i = 0; i < numberOfTestSamples; i++) {
+      const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
+      mapOfUuidExtractions[uuid]++;
+    }
+
+    // Compute percentage of each UUID.
+    const mapOfUuidPercentages: { [key: string]: number } = { };
+    for (const uuid in mapOfUuidExtractions) {
+      const numberOfTimesUuidExtracted = mapOfUuidExtractions[uuid];
+      const percentageOfTimesUuidExtracted = (numberOfTimesUuidExtracted * 100) / numberOfTestSamples;
+      mapOfUuidPercentages[uuid] = percentageOfTimesUuidExtracted;
+    }
+    console.log(mapOfUuidPercentages);
+
+    // Check for uniform distribution.
+    const numberOfPossibleUuids = uuidDictionary.length ** uuidLength;
+    const expectedPercentageWithUniformDistribution = 100 / numberOfPossibleUuids;
+    const delta = expectedPercentageWithUniformDistribution * 0.01;
+    for (const uuid in mapOfUuidPercentages) {
+      assert.approximately(mapOfUuidPercentages[uuid], expectedPercentageWithUniformDistribution, delta, "The extraction seems to not be a uniform distribution (max 1.0% of error admitted).");
+    }
+  }).timeout(2*60*1000);
+
   it('generateShortUuid', () => {
     // Check validity.
     const listOfUuids = [];
