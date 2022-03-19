@@ -42,7 +42,7 @@ checks:
   return-statements:  # Functions or methods with a high number of return statements
     enabled: true
     config:
-      threshold: 4  # Default is 4
+      threshold: 6  # Default is 4
       
   identical-code:  # Duplicate code which is syntactically identical (but may be formatted differently)
     enabled: true
