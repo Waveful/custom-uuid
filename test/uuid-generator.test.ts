@@ -18,8 +18,9 @@ import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuid-generator";
 
 // Constants
-const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 1000000;
+const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 1000 * 1000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
+const DEFAULT_TEST_TIMEOUT: number = 4 * 60 * 1000; // 4 minutes
 
 describe('uuidGenerator', () => {
 
@@ -44,6 +45,8 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
       mapOfUuidExtractions[uuid]++;
     }
+    console.log("Printing extractions...");
+    console.log(mapOfUuidExtractions);
 
     // Compute percentage of each UUID.
     const mapOfUuidPercentages: { [key: string]: number } = { };
@@ -52,6 +55,7 @@ describe('uuidGenerator', () => {
       const percentageOfTimesUuidExtracted = (numberOfTimesUuidExtracted * 100) / numberOfTestSamples;
       mapOfUuidPercentages[uuid] = percentageOfTimesUuidExtracted;
     }
+    console.log("Printing percentage of extractions...");
     console.log(mapOfUuidPercentages);
 
     // Check for uniform distribution.
@@ -62,7 +66,7 @@ describe('uuidGenerator', () => {
     for (const uuid in mapOfUuidPercentages) {
       assert.approximately(mapOfUuidPercentages[uuid], expectedPercentageWithUniformDistribution, delta, "The extraction seems to not be a uniform distribution (max 2.5% of error admitted).");
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateShortUuid', () => {
     // Check validity.
@@ -84,7 +88,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateShortUuid();
       console.log("Short UUID:                   " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateStrongCompactUuid', () => {
     // Check validity.
@@ -106,7 +110,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateStrongCompactUuid();
       console.log("Short and compact UUID:       " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateShortLowercaseUuid', () => {
     // Check validity.
@@ -128,7 +132,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateShortLowercaseUuid();
       console.log("Short lowercase UUID:         " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateLongLowercaseUuid without hyphens', () => {
     // Check validity.
@@ -150,7 +154,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateLongLowercaseUuid(true);
       console.log("Long lowercase UUID (w/o -):  " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateLongLowercaseUuid with hyphens', () => {
     // Check validity.
@@ -172,7 +176,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateLongLowercaseUuid(false);
       console.log("Long lowercase UUID (w/ -):   " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateProfanitySafeUuid', () => {
     // Check validity.
@@ -194,7 +198,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateProfanitySafeUuid();
       console.log("Profanity safe UUID:          " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateCustomUuid', () => {
     // Check validity.
@@ -218,7 +222,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateCustomUuid(uuidDictionary, uuidLength);
       console.log("Custom UUID:                  " + uuid);
     }
-  }).timeout(4*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 
   it('generateTimestampId', () => {
     // Check validity.
@@ -235,7 +239,7 @@ describe('uuidGenerator', () => {
       const uuid = uuidGenerator.generateTimestampId();
       console.log("Timestamp UUID:               " + uuid);
     }
-  }).timeout(2*60*1000);
+  }).timeout(DEFAULT_TEST_TIMEOUT);
 });
 
 function doesStringContainOnlySimpleCharacters(input: string): boolean {
