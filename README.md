@@ -1,14 +1,25 @@
 # custom-uuid
 
 [![Package Version](https://img.shields.io/npm/v/custom-uuid?color=informational&label=package%20version&logo=npm)](https://www.npmjs.com/package/custom-uuid)
+[![Dependencies](https://img.shields.io/static/v1?label=dependencies&message=zero&color=informational&logo=npm)](https://www.npmjs.com/package/custom-uuid?activeTab=dependencies)
 [![Requires Node](https://img.shields.io/node/v/custom-uuid?color=informational&label=requires%20node&logo=node.js)](https://nodejs.org/about/releases/)
 
 [![Tests](https://github.com/Waveful/custom-uuid/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/Waveful/custom-uuid/actions/workflows/run-tests.yml)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/1048e2f2b98910709833/test_coverage)](https://codeclimate.com/github/Waveful/custom-uuid/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1048e2f2b98910709833/maintainability)](https://codeclimate.com/github/Waveful/custom-uuid/maintainability)
 
-Generate custom and cryptographically secure UUIDs (universally unique identifiers).\
-You can simply create a new UUID by specifying the dictionary of characters and the length of the UUID.
+Generate custom and cryptographically-secure string UUIDs (universally unique identifiers).
+
+`custom-uuid` is a lightweight package with zero dependencies. To generate string UUIDs it uses the [crypto module](https://nodejs.org/api/crypto.html) that comes pre-installed in Node.js.
+
+This package should be used only when you need to use **strings** as identifiers.
+Some examples of use cases are:
+* keys for a key-value DB
+* unique file identifiers
+* user-facing identifiers
+* or generally any use case where you need a unique **string** composed of random characters, and not a random pile of bits
+
+You can simply create a new string UUID by specifying the dictionary of characters and the length of the string to be generated.
 
 
 ## Quickstart
@@ -21,20 +32,24 @@ To create a custom UUID...
 npm install custom-uuid
 ```
 
-#### 2. Create a custom UUID
+#### 2. Create a custom UUID (or use a predefined UUID)
 
 ES6 module syntax:
 
 ```javascript
-import { generateCustomUuid } from "custom-uuid";
+import { generateCustomUuid, generateShortUuid, generateStrongCompactUuid } from "custom-uuid";
 generateCustomUuid("123456789ABC", 20); // ⇨ 'C12B1B2A9382A488B43A'
+generateShortUuid(); // ⇨ 'yT1xoeCt6fvdDf6a'
+generateStrongCompactUuid(); // ⇨ 'BYFGhRjnn83hHCarT09HKJ'
 ```
 
 CommonJS syntax:
 
 ```javascript
-const { generateCustomUuid } = require('custom-uuid');
+const { generateCustomUuid, generateShortUuid, generateStrongCompactUuid } = require('custom-uuid');
 generateCustomUuid("123456789ABC", 20); // ⇨ 'B5B6699247862A569998'
+generateShortUuid(); // ⇨ 'DMDvkPec8QUyV9O1'
+generateStrongCompactUuid(); // ⇨ 'xRC4JggRQQFdPwn6MhZs08'
 ```
 
 #### 3. Make sure the custom UUID is unique enough for your use case
@@ -51,16 +66,66 @@ Or you can use one of the pre-defined UUIDs that have strong guarantees of uniqu
 
 ## Pre-defined UUIDs
 
-| Method                       | Length | Example output                       | Average UUIDs to be generated before having the first collision |
-|------------------------------|--------|--------------------------------------|-----------------------------------------------------------------|
-| generateShortUuid()          | 16     | 14usBY8xSYXGPvsA                     | 2.73e+14                                                        |
-| generateStrongCompactUuid()  | 22     | 6ptGBhTKkxTMCMEiiHiwwj               | 6.52e+19                                                        |
-| generateShortLowercaseUuid() | 20     | 15amp61jbnu6dzmhxa0i                 | 4.58e+15                                                        |
-| generateLongLowercaseUuid()  | 36     | e3703960-ca2d-4802-b426-88467e0e9b98 | 2.88e+18                                                        |
-| generateProfanitySafeUuid()  | 20     | 4a8g6z1w7d1a8d1o9o3o                 | 8.79e+11                                                        |
+| Method                                                        | Length | Example output                         |
+|---------------------------------------------------------------|--------|----------------------------------------|
+| [`generateShortUuid()`](#generateShortUuid)                   | 16     | `14usBY8xSYXGPvsA`                     |
+| [`generateStrongCompactUuid()`](#generateStrongCompactUuid)   | 22     | `6ptGBhTKkxTMCMEiiHiwwj`               |
+| [`generateShortLowercaseUuid()`](#generateShortLowercaseUuid) | 20     | `15amp61jbnu6dzmhxa0i`                 |
+| [`generateLongLowercaseUuid()`](#generateLongLowercaseUuid)   | 36     | `e3703960-ca2d-4802-b426-88467e0e9b98` |
+| [`generateProfanitySafeUuid()`](#generateProfanitySafeUuid)   | 20     | `4a8g6z1w7d1a8d1o9o3o`                 |
 
-\
+#### generateShortUuid()
+
+Generates a short cryptographically-strong random UUID using numbers and letters.\
+Use this identifier when you need a strong but very short universally unique identifier.
+
+* **Length:** 16
+* **Dictionary:** `0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`
+* **Example output:** `14usBY8xSYXGPvsA`
+* **Average UUIDs to be generated before having the first collision:** 2.73e+14
+
+#### generateStrongCompactUuid()
+
+Generates a short cryptographically-strong random UUID using numbers and letters.\
+Use this identifier when you need a very strong but still compact universally unique id.
+
+* **Length:** 22
+* **Dictionary:** `0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`
+* **Example output:** `6ptGBhTKkxTMCMEiiHiwwj`
+* **Average UUIDs to be generated before having the first collision:** 6.52e+19
+
+#### generateShortLowercaseUuid()
+
+Generates a short cryptographically-strong random UUID using numbers and lowercase letters.\
+Use this identifier when you need a strong but short universally unique id that does not contain uppercase letters.
+
+* **Length:** 20
+* **Dictionary:** `0123456789abcdefghijklmnopqrstuvwxyz`
+* **Example output:** `15amp61jbnu6dzmhxa0i`
+* **Average UUIDs to be generated before having the first collision:** 4.58e+15
+
+#### generateLongLowercaseUuid(shouldRemoveHyphens: boolean = false)
+
+Generates a long cryptographically-strong random UUID using the RFC 4122 version 4 UUID (128 bits in which 122 are random, converted to a hex string).\
+Use this identifier when you need a very strong universally unique id, but having a long string is not a problem.
+
+* **Length:** 36
+* **Dictionary:** `0123456789abcdef` (bits are converted to hex)
+* **Example output:** `e3703960-ca2d-4802-b426-88467e0e9b98`
+* **Average UUIDs to be generated before having the first collision:** 2.88e+18
+
 Note: `generateLongLowercaseUuid()` provides [RFC4122 v4-compliant UUIDs](https://datatracker.ietf.org/doc/html/rfc4122) by using `crypto.randomUUID()`, `crypto.randomUUID()` is only available in node >= 14.17.0.
+
+#### generateProfanitySafeUuid()
+
+Generates a short cryptographically-strong random UUID by alternating a number with a letter,
+this alternation is done to avoid the creation of profanity inside the UUID (if we use letters it could create a bad word by chance).\
+Use this identifier when you need a universally unique id that is frequently presented to users or associated to users.
+
+* **Length:** 20
+* **Dictionary:** `123456789` + `abcdefghijklmnopqrstuvwxyz`
+* **Example output:** `4a8g6z1w7d1a8d1o9o3o`
+* **Average UUIDs to be generated before having the first collision:** 8.79e+11
 
 
 ## License
