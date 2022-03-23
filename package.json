@@ -1,22 +1,24 @@
 {
   "name": "custom-uuid",
-  "description": "Generate UUIDs with custom formats.",
+  "description": "Generate string UUIDs with custom formats.",
   "version": "2.2.3",
   "license": "Apache-2.0",
   "author": "Waveful",
+  "homepage": "https://github.com/Waveful/custom-uuid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Waveful/custom-uuid.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Waveful/custom-uuid/issues"
+  },
+  "type": "commonjs",
   "engines": {
     "node": ">=14.17.0"
   },
   "main": "build/index.js",
   "files": [
     "build/**/*"
-  ],
-  "keywords": [
-    "custom uuid",
-    "uuid",
-    "uuid generator",
-    "universally unique identifier",
-    "short uuid"
   ],
   "scripts": {
     "build": "rm -rf build && tsc -p .",
@@ -32,7 +34,6 @@
     "create-minor-version": "npm version minor && npm publish",
     "create-major-version": "npm version major && npm publish"
   },
-  "repository": "Waveful/custom-uuid",
   "devDependencies": {
     "@types/chai": "^4.3.0",
     "@types/chai-as-promised": "^7.1.4",
@@ -47,5 +48,12 @@
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.5.4"
-  }
+  },
+  "keywords": [
+    "custom uuid",
+    "uuid",
+    "uuid generator",
+    "universally unique identifier",
+    "short uuid"
+  ]
 }
