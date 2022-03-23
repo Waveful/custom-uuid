@@ -47,12 +47,12 @@ checks:
   identical-code:  # Duplicate code which is syntactically identical (but may be formatted differently)
     enabled: true
     config:
-      threshold: 90  # Default for TS is 45 https://docs.codeclimate.com/docs/duplication
+      threshold: 90  # Default for JS and TS is 45 https://docs.codeclimate.com/docs/duplication
 
   similar-code:  # Duplicate code which is not identical but shares the same structure (e.g. variable names may differ)
     enabled: true
     config:
-      threshold: 180  # Default for TS is 45 https://docs.codeclimate.com/docs/duplication
+      threshold: 180  # Default for JS and TS is 45 https://docs.codeclimate.com/docs/duplication
 
 plugins:
   eslint:

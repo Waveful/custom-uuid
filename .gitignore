@@ -56,6 +56,9 @@ node_modules/
 # dotenv environment variables file
 .env
 
+# Redis binary dump files
+*.rdb
+
 # IntelliJ related
 *.iml
 *.ipr
@@ -63,4 +66,4 @@ node_modules/
 .idea
 
 # Other IDEs
-.vscode/settings.json
+.vscode
