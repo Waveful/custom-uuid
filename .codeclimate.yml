@@ -8,55 +8,55 @@ checks:
     enabled: true
     config:
       threshold: 5  # Default is 4
-      
+
   complex-logic:  # Boolean logic that may be hard to understand
     enabled: true
     config:
       threshold: 4  # Default is 4
-      
+
   file-lines:  # Excessive lines of code within a single file
     enabled: true
     config:
       threshold: 300  # Default is 250
-      
+
   method-complexity:  # Functions or methods that may be hard to understand
     enabled: true
     config:
       threshold: 15  # Default is 5
-      
+
   method-count:  # Classes defined with a high number of functions or methods
     enabled: true
     config:
       threshold: 20  # Default is 20
-      
+
   method-lines:  # Excessive lines of code within a single function or method
     enabled: true
     config:
       threshold: 75  # Default is 25
-      
+
   nested-control-flow:  # Deeply nested control structures like "if" or "case"
     enabled: true
     config:
       threshold: 4  # Default is 4
-      
+
   return-statements:  # Functions or methods with a high number of return statements
     enabled: true
     config:
       threshold: 6  # Default is 4
-      
+
   identical-code:  # Duplicate code which is syntactically identical (but may be formatted differently)
     enabled: true
     config:
       threshold: 90  # Default for TS is 45 https://docs.codeclimate.com/docs/duplication
-  
+
   similar-code:  # Duplicate code which is not identical but shares the same structure (e.g. variable names may differ)
     enabled: true
     config:
       threshold: 180  # Default for TS is 45 https://docs.codeclimate.com/docs/duplication
-      
+
 plugins:
+  eslint:
+    enabled: true
+    channel: "eslint-7"
   fixme:
     enabled: true
-  tslint:
-    enabled: true
-    config: tslint.json
