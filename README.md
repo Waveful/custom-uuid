@@ -5,8 +5,8 @@
 [![Requires Node](https://img.shields.io/node/v/custom-uuid?color=informational&label=requires%20node&logo=node.js)](https://nodejs.org/about/releases/)
 
 [![Tests](https://github.com/Waveful/custom-uuid/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/Waveful/custom-uuid/actions/workflows/run-tests.yml)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/1048e2f2b98910709833/test_coverage)](https://codeclimate.com/github/Waveful/custom-uuid/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/1048e2f2b98910709833/maintainability)](https://codeclimate.com/github/Waveful/custom-uuid/maintainability)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/Waveful/custom-uuid?label=test%20coverage&logo=codeclimate)](https://codeclimate.com/github/Waveful/custom-uuid/code?sort=-test_coverage)
+[![Maintainability Score](https://img.shields.io/codeclimate/maintainability/Waveful/custom-uuid?logo=codeclimate)](https://codeclimate.com/github/Waveful/custom-uuid/maintainability)
 
 Generate custom and cryptographically-secure string UUIDs (universally unique identifiers).
 
@@ -54,7 +54,7 @@ generateStrongCompactUuid(); // ⇨ 'xRC4JggRQQFdPwn6MhZs08'
 
 #### 3. Make sure the custom UUID is unique enough for your use case
 
-In this example we are using a dictionary with 12 different characters and a length of 20.
+With the custom UUID example we are using a dictionary with 12 different characters and a length of 20.
 Therefore, the total number of unique identifiers is `12^20 = 3.83e+21`.\
 A large pool of identifiers makes it very unlikely to create duplicates.
 
@@ -66,13 +66,13 @@ Or you can use one of the pre-defined UUIDs that have strong guarantees of uniqu
 
 ## Pre-defined UUIDs
 
-| Method                                                        | Length | Example output                         |
-|---------------------------------------------------------------|--------|----------------------------------------|
-| [`generateShortUuid()`](#generateShortUuid)                   | 16     | `14usBY8xSYXGPvsA`                     |
-| [`generateStrongCompactUuid()`](#generateStrongCompactUuid)   | 22     | `6ptGBhTKkxTMCMEiiHiwwj`               |
-| [`generateShortLowercaseUuid()`](#generateShortLowercaseUuid) | 20     | `15amp61jbnu6dzmhxa0i`                 |
-| [`generateLongLowercaseUuid()`](#generateLongLowercaseUuid)   | 36     | `e3703960-ca2d-4802-b426-88467e0e9b98` |
-| [`generateProfanitySafeUuid()`](#generateProfanitySafeUuid)   | 20     | `4a8g6z1w7d1a8d1o9o3o`                 |
+| Method                                                                                        | Length | Example output                         |
+|-----------------------------------------------------------------------------------------------|--------|----------------------------------------|
+| [`generateShortUuid()`](#generateShortUuid)                                                   | 16     | `14usBY8xSYXGPvsA`                     |
+| [`generateStrongCompactUuid()`](#generateStrongCompactUuid)                                   | 22     | `6ptGBhTKkxTMCMEiiHiwwj`               |
+| [`generateShortLowercaseUuid()`](#generateShortLowercaseUuid)                                 | 20     | `15amp61jbnu6dzmhxa0i`                 |
+| [`generateLongLowercaseUuid()`](#generateLongLowercaseUuidshouldRemoveHyphens-boolean--false) | 36     | `e3703960-ca2d-4802-b426-88467e0e9b98` |
+| [`generateProfanitySafeUuid()`](#generateProfanitySafeUuid)                                   | 20     | `4a8g6z1w7d1a8d1o9o3o`                 |
 
 #### generateShortUuid()
 
