@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
   parserOptions: {
-    project: ["./tsconfig.json"],
+    project: ["./tsconfig.eslint.json"], // Uses a different file instead of the "tsconfig.json" otherwise it would require including the test folder in the build.
   },
-  ignorePatterns: [".eslintrc.js", "/build/", "/coverage/", "/test/"],
+  ignorePatterns: [".eslintrc.js", "/build/", "/coverage/"],
   extends: [
     "eslint:recommended",
     "google",
@@ -31,7 +31,20 @@ module.exports = {
 
         "@typescript-eslint/no-inferrable-types": "off" // Disallows explicit type declarations for variables that can be easily inferred.
       }
-    }
+    },
+    {
+      // Disable inconvenient rules in the test folder.
+      files: ["test/**/*.js", "test/**/*.ts"],
+      extends: [],
+      rules: {
+        "@typescript-eslint/no-unused-vars": "off", // Variables declared but not used.
+        "guard-for-in": "off", // Looping over objects with a for in loop will include properties that are inherited through the prototype chain. This behavior can lead to unexpected items in your for loop.
+        "no-await-in-loop": "off", // Program is not taking full advantage of the parallelization benefits of async/await. Use Promise.all().
+        "no-invalid-this": "off", // Disallows this keywords outside of classes or class-like objects.
+        "no-unused-vars": "off", // Variables declared but not used.
+        "promise/no-nesting": "off", // Avoid nested then() or catch() statements.
+      },
+    },
   ],
   rules: {
     "comma-dangle": ["warn", "always-multiline"], // Disallows (never) or enforces (always-multiline) trailing commas.
