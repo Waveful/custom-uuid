@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-import {expect, assert} from "chai";
 import * as uuidGenerator from "../src/uuid-generator";
+import { assert, expect } from "chai";
 
 // Constants
 const DEFAULT_NUMBER_OF_TEST_SAMPLES: number = 1000 * 1000;
 const NUMBER_OF_UUIDS_TO_BE_PRINTED: number = 20;
 const DEFAULT_TEST_TIMEOUT: number = 4 * 60 * 1000; // 4 minutes
 
-describe('uuidGenerator', () => {
+describe('uuidGenerator', function() {
 
-  it('Check uniform distribution of uuids', () => {
+  it('Check uniform distribution of uuids', function() {
     const uuidDictionary = "ABC";
     const uuidLength = 3;
     const numberOfTestSamples = 10*1000*1000;
@@ -68,7 +68,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateShortUuid', () => {
+  it('generateShortUuid', function() {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
@@ -90,7 +90,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateStrongCompactUuid', () => {
+  it('generateStrongCompactUuid', function() {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
@@ -112,7 +112,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateShortLowercaseUuid', () => {
+  it('generateShortLowercaseUuid', function() {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
@@ -134,7 +134,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateLongLowercaseUuid without hyphens', () => {
+  it('generateLongLowercaseUuid without hyphens', function() {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
@@ -156,7 +156,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateLongLowercaseUuid with hyphens', () => {
+  it('generateLongLowercaseUuid with hyphens', function() {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
@@ -178,7 +178,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateProfanitySafeUuid', () => {
+  it('generateProfanitySafeUuid', function() {
     // Check validity.
     const listOfUuids = [];
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
@@ -200,7 +200,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateCustomUuid', () => {
+  it('generateCustomUuid', function() {
     // Check validity.
     const listOfUuids = [];
     const uuidDictionary = "AAAAABCDEF";
@@ -224,7 +224,7 @@ describe('uuidGenerator', () => {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
-  it('generateTimestampId', () => {
+  it('generateTimestampId', function() {
     // Check validity.
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
       const uuid = uuidGenerator.generateTimestampId();
