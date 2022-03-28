@@ -1,5 +1,13 @@
 # EditorConfig helps maintain consistent coding styles for multiple developers across various editors and IDEs.
 #
+# GitHub Web IDE: native support, enabled by default.
+# IntelliJ IDEA: native support, enabled by default.
+# WebStorm: native support, enabled by default.
+# Atom: plugin required. See https://editorconfig.org/#download
+# Sublime Text: plugin required. See https://editorconfig.org/#download
+# Vim: plugin required. See https://editorconfig.org/#download
+# Visual Studio Code: plugin required. See https://editorconfig.org/#download
+#
 # editorconfig.org
 #
 # EditorConfig files are read top to bottom and the most recent rules found take precedence.
