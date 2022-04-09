@@ -32,16 +32,16 @@ export function generateShortUuid(): string {
 
 /**
  * Generates a short cryptographically-strong random UUID using numbers and letters.
- * Example: "6ptGBhTKkxTMCMEiiHiwwj".
+ * Example: "6ptGBhTKkxTMCMEiiHiw".
  * Use this identifier when you need a very strong but still compact universally unique id.
  *
- * Length of this UUID: 22 characters.
- * Total number of possible UUIDs: 62^22 = 2.70e+39, precisely 2'707'803'647'802'660'400'290'261'537'185'326'956'544
- * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(62^22)) = 0.0000000000000000000185% (https://preshing.com/20110504/hash-collision-probabilities/)
- * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*62^22) = 6.52e+19 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+ * Length of this UUID: 20 characters.
+ * Total number of possible UUIDs: 62^20 = 7.04e+35, precisely 704'423'425'546'998'022'968'330'264'616'370'176
+ * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(62^20)) = 0.000000000000000071% (https://preshing.com/20110504/hash-collision-probabilities/)
+ * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*62^20) = 1.05e+18 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
  */
 export function generateStrongCompactUuid(): string {
-  return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 22);
+  return generateCustomUuid("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", 20);
 }
 
 /**

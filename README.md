@@ -40,7 +40,7 @@ ES6 module syntax:
 import { generateCustomUuid, generateShortUuid, generateStrongCompactUuid } from "custom-uuid";
 generateCustomUuid("123456789ABC", 20); // ⇨ 'C12B1B2A9382A488B43A'
 generateShortUuid(); // ⇨ 'yT1xoeCt6fvdDf6a'
-generateStrongCompactUuid(); // ⇨ 'BYFGhRjnn83hHCarT09HKJ'
+generateStrongCompactUuid(); // ⇨ 'BYFGhRjnn83hHCarT09H'
 ```
 
 CommonJS syntax:
@@ -49,7 +49,7 @@ CommonJS syntax:
 const { generateCustomUuid, generateShortUuid, generateStrongCompactUuid } = require('custom-uuid');
 generateCustomUuid("123456789ABC", 20); // ⇨ 'B5B6699247862A569998'
 generateShortUuid(); // ⇨ 'DMDvkPec8QUyV9O1'
-generateStrongCompactUuid(); // ⇨ 'xRC4JggRQQFdPwn6MhZs08'
+generateStrongCompactUuid(); // ⇨ 'xRC4JggRQQFdPwn6MhZs'
 ```
 
 #### 3. Make sure the custom UUID is unique enough for your use case
@@ -69,7 +69,7 @@ Or you can use one of the pre-defined UUIDs that have strong guarantees of uniqu
 | Method                                                                                        | Length | Example output                         |
 |-----------------------------------------------------------------------------------------------|--------|----------------------------------------|
 | [`generateShortUuid()`](#generateShortUuid)                                                   | 16     | `14usBY8xSYXGPvsA`                     |
-| [`generateStrongCompactUuid()`](#generateStrongCompactUuid)                                   | 22     | `6ptGBhTKkxTMCMEiiHiwwj`               |
+| [`generateStrongCompactUuid()`](#generateStrongCompactUuid)                                   | 20     | `6ptGBhTKkxTMCMEiiHiw`                 |
 | [`generateShortLowercaseUuid()`](#generateShortLowercaseUuid)                                 | 20     | `15amp61jbnu6dzmhxa0i`                 |
 | [`generateLongLowercaseUuid()`](#generateLongLowercaseUuidshouldRemoveHyphens-boolean--false) | 36     | `e3703960-ca2d-4802-b426-88467e0e9b98` |
 | [`generateProfanitySafeUuid()`](#generateProfanitySafeUuid)                                   | 20     | `4a8g6z1w7d1a8d1o9o3o`                 |
@@ -89,10 +89,10 @@ Use this identifier when you need a strong but very short universally unique ide
 Generates a short cryptographically-strong random UUID using numbers and letters.\
 Use this identifier when you need a very strong but still compact universally unique id.
 
-* **Length:** 22
+* **Length:** 20
 * **Dictionary:** `0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ`
-* **Example output:** `6ptGBhTKkxTMCMEiiHiwwj`
-* **Average UUIDs to be generated before having the first collision:** 6.52e+19
+* **Example output:** `6ptGBhTKkxTMCMEiiHiw`
+* **Average UUIDs to be generated before having the first collision:** 1.05e+18
 
 #### generateShortLowercaseUuid()
 

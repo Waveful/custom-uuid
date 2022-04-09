@@ -96,7 +96,7 @@ describe('uuidGenerator', function() {
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
       const uuid = uuidGenerator.generateStrongCompactUuid();
       expect(uuid).to.be.a("string");
-      assert.equal(uuid.length, 22);
+      assert.equal(uuid.length, 20);
       expect(doesStringContainOnlySimpleCharacters(uuid)).to.be.true;
       listOfUuids.push(uuid);
     }
