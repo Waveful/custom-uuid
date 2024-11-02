@@ -68,7 +68,7 @@ export function generateShortLowercaseUuid(): string {
  * Total number of possible UUIDs: 2^122 = 5.31e+36, precisely 5'316'911'983'139'663'491'615'228'241'121'378'304
  * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(2^122)) = 0.00000000000000000940% (https://preshing.com/20110504/hash-collision-probabilities/)
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*2^122) = 2.88e+18 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
- * @param shouldRemoveHyphens set to true to remove hyphens from the v4 UUID (instead of 8a480344-a266-4aa5-b0ba-84641a61911d, 8a480344a2664aa5b0ba84641a61911d)
+ * @param {boolean} shouldRemoveHyphens set to true to remove hyphens from the v4 UUID (instead of 8a480344-a266-4aa5-b0ba-84641a61911d, 8a480344a2664aa5b0ba84641a61911d)
  */
 export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean = false): string {
   if (shouldRemoveHyphens) {
@@ -106,9 +106,12 @@ export function generateProfanitySafeUuid(): string {
  * For example if we use dictionary="AB" length=5 we will have as output something like the following: "ABABB".
  * @param dictionary the characters to be used to create the UUID. Duplicates characters are allowed,
  * but take into consideration that duplicates increase the probability of generating that character.
- * @param length the length of the UUID.
+ * @param {number} length the length of the UUID.
  */
 export function generateCustomUuid(dictionary: string, length: number): string {
+  if (length <= 0) {
+    throw new Error("The parameter length must > 0.");
+  }
   let result = "";
   const max = dictionary.length;
   for (let i = 0; i < length; i++) {

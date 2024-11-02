@@ -224,6 +224,12 @@ describe('uuidGenerator', function() {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
+  it('generateCustomUuid with invalid parameter', function() {
+    expect(function() {
+      uuidGenerator.generateCustomUuid("abc", 0);
+    }).to.throw('The parameter length must > 0.');
+  });
+
   it('generateTimestampId', function() {
     // Check validity.
     for (let i = 0; i < DEFAULT_NUMBER_OF_TEST_SAMPLES; i++) {
