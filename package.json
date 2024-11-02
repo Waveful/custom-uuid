@@ -1,7 +1,7 @@
 {
   "name": "custom-uuid",
   "description": "Generate string UUIDs with custom formats.",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "license": "Apache-2.0",
   "author": "Waveful",
   "homepage": "https://github.com/Waveful/custom-uuid",
