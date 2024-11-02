@@ -200,6 +200,12 @@ describe('uuidGenerator', function() {
     }
   }).timeout(DEFAULT_TEST_TIMEOUT);
 
+  it('generateProfanitySafeUuid with invalid parameter', function() {
+    expect(function() {
+      uuidGenerator.generateProfanitySafeUuid(3);
+    }).to.throw('The parameter customLength must be a multiple of two.');
+  });
+
   it('generateCustomUuid', function() {
     // Check validity.
     const listOfUuids = [];

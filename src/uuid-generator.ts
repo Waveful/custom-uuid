@@ -88,9 +88,13 @@ export function generateLongLowercaseUuid(shouldRemoveHyphens: boolean = false):
  * Total number of possible UUIDs: (9^10)*(26^10) = 4.92e+23, precisely 492'219'227'058'666'339'787'776
  * Probability of creating a duplicate ID when creating one billion (10^9, giga-unit) UUIDs: k^2÷2N = ((10^9)^2)÷(2*(9^10)*(26^10)) ≈ 0.000102% (https://preshing.com/20110504/hash-collision-probabilities/)
  * Average UUIDs to be generated before having the first collision: sqrt(pi*0.5*(9^10)*(26^10)) = 879'304'357'911 (https://shortunique.id/classes/default.html#approxmaxbeforecollision)
+ * @param {number} customLength a custom length to apply to this UUID, the number must be a multiple of two. Default is 20.
  */
-export function generateProfanitySafeUuid(): string {
-  const partLength = 10;
+export function generateProfanitySafeUuid(customLength: number = 20): string {
+  if (customLength % 2 !== 0) {
+    throw new Error("The parameter customLength must be a multiple of two.");
+  }
+  const partLength = customLength / 2;
   const numbersPart = generateCustomUuid("123456789", partLength); // Not using number '0' since it can be seen as the letter 'O'.
   const lettersPart = generateCustomUuid("abcdefghijklmnopqrstuvwxyz", partLength);
   let resultingString = "";
