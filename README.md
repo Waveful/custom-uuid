@@ -116,7 +116,7 @@ Use this identifier when you need a very strong universally unique id, but havin
 
 Note: `generateLongLowercaseUuid()` provides [RFC4122 v4-compliant UUIDs](https://datatracker.ietf.org/doc/html/rfc4122) by using `crypto.randomUUID()`, `crypto.randomUUID()` is only available in node >= 14.17.0.
 
-#### generateProfanitySafeUuid()
+#### generateProfanitySafeUuid(customLength: number = 20)
 
 Generates a short cryptographically-strong random UUID by alternating a number with a letter,
 this alternation is done to avoid the creation of profanity inside the UUID (if we use letters it could create a bad word by chance).\
