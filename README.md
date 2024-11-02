@@ -72,7 +72,7 @@ Or you can use one of the pre-defined UUIDs that have strong guarantees of uniqu
 | [`generateStrongCompactUuid()`](#generateStrongCompactUuid)                                   | 20     | `6ptGBhTKkxTMCMEiiHiw`                 |
 | [`generateShortLowercaseUuid()`](#generateShortLowercaseUuid)                                 | 20     | `15amp61jbnu6dzmhxa0i`                 |
 | [`generateLongLowercaseUuid()`](#generateLongLowercaseUuidshouldRemoveHyphens-boolean--false) | 36     | `e3703960-ca2d-4802-b426-88467e0e9b98` |
-| [`generateProfanitySafeUuid()`](#generateProfanitySafeUuid)                                   | 20     | `4a8g6z1w7d1a8d1o9o3o`                 |
+| [`generateProfanitySafeUuid()`](#generateProfanitySafeUuidcustomLength-number--20)            | 20     | `4a8g6z1w7d1a8d1o9o3o`                 |
 
 #### generateShortUuid()
 
